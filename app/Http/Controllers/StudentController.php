@@ -8,6 +8,11 @@ use DB;
 class StudentController extends Controller
 {
     public function index(Request $request){
+    	$redis = new \Redis();
+		$redis->connect('127.0.0.1','6379');
+		$redis->incr('num');
+		$num = $redis->get('num');
+		echo "访问次数：".$num;
     	$req = $request->all();
     	$search = "";
     	if(!empty($req['search'])){
