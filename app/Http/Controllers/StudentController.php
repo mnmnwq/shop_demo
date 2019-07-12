@@ -3,11 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Model\Goods;
 use DB;
 
 class StudentController extends Controller
 {
+	public function login(){
+		return view('login');
+	}
+
+	public function do_login(Request $request){
+		$req = $request->all();
+		$request->session()->put('username','name123');
+		return redirect('student/index');
+	}
+
     public function index(Request $request){
+		DB::connection()->enableQueryLog();
+		//$info = DB::table('student')->select(DB::raw('count(*) as num,sex'))->groupBy('sex')->get()->toArray();
+		$info = DB::table("student")
+		->join('class','student.class_id','=','class.id')->get()->toArray();
+		$log = DB::getQueryLog();
+		var_dump($log);
+		dd($info);
+		dd();
     	$redis = new \Redis();
 		$redis->connect('127.0.0.1','6379');
 		$redis->incr('num');
