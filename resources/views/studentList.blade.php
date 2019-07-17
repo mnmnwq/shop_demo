@@ -7,6 +7,7 @@
 <body>
 	<center>
 		<h1>学生列表</h1>
+		{{Session::get('username')}}
 		<form action="{{url('student/index')}}" method="get">
 			
 			姓名：<input type="text" name="search" value="{{$search}}">

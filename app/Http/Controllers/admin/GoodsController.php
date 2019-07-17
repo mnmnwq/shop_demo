@@ -13,7 +13,16 @@ class GoodsController extends Controller
     }
 
     public function do_add_goods(Request $request){
-        $path = $request->file('goods_pic')->store('goods');
-        echo asset('storage').'/'.$path;
+        $files = $request->file('goods_pic');
+        $path = '';
+        if(empty($files)){
+            //未传图片
+            echo "fail";
+        }else{
+            //已传图片
+            $path = $files->store('goods');
+        }
+        dd($path);
+        echo 'storage'.'/'.$path;
     }
 }

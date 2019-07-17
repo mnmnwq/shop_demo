@@ -19,14 +19,17 @@ class StudentController extends Controller
 	}
 
     public function index(Request $request){
-		DB::connection()->enableQueryLog();
-		//$info = DB::table('student')->select(DB::raw('count(*) as num,sex'))->groupBy('sex')->get()->toArray();
-		$info = DB::table("student")
-		->join('class','student.class_id','=','class.id')->get()->toArray();
-		$log = DB::getQueryLog();
-		var_dump($log);
-		dd($info);
-		dd();
+		// DB::connection()->enableQueryLog();
+		// //$info = DB::table('student')->select(DB::raw('count(*) as num,sex'))->groupBy('sex')->get()->toArray();
+		// $info = DB::table("student")
+		// ->join('class','student.class_id','=','class.id')->get()->toArray();
+		// $log = DB::getQueryLog();
+		// var_dump($log);
+		// dd($info);
+		// dd();
+		
+		 $request->session()->put('username','name123');
+		// dd();
     	$redis = new \Redis();
 		$redis->connect('127.0.0.1','6379');
 		$redis->incr('num');
@@ -45,7 +48,8 @@ class StudentController extends Controller
     }
 
     public function update(Request $request){
-    	$req = $request->all();
+		$req = $request->all();
+		dd($req);
     	$info = DB::table('student')->where(['id'=>$req['id']])->first();
     	return view('studentUpdate',['student_info'=>$info]);
     }

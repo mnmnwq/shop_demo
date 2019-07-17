@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        //去除csrf验证的路由
+        'notify_url','return_url'
     ];
 }
