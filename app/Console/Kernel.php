@@ -24,8 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+            //业务逻辑
+            \Log::Info('进入调度了!');
+        })->everyMinute();
+        
     }
 
     /**
