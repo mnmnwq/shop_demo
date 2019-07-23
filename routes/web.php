@@ -15,6 +15,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//试题
+Route::get('question/add','QuestionController@add');
+Route::post('question/do_add','QuestionController@do_add');
+Route::get('question/list','QuestionController@index');
+Route::get('question/add_papers','QuestionController@add_papers');
+Route::post('question/do_add_papers','QuestionController@do_add_papers');
+Route::post('question/insert_papers','QuestionController@insert_papers');
+Route::get('question/test_list','QuestionController@test_list');
+Route::get('question/test_detail','QuestionController@test_detail');
+//火车票
+Route::get('ticket/index','TicketController@index');
+
+//车库管理
+Route::get("cart/index",'CartController@index');
+Route::get("cart/add_cart",'CArtController@add_cart');
+Route::post("cart/do_add_cart",'CArtController@do_add_cart');
+Route::get("cart/del_cart",'CArtController@del_cart');
+Route::post("cart/do_del_cart",'CArtController@do_del_cart');
+Route::get("cart/del_price",'CArtController@del_price');
+
+
 Route::get('pay','PayController@do_pay');
 
 Route::get('return_url','PayController@return_url'); //同步
