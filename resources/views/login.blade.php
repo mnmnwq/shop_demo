@@ -1,37 +1,28 @@
-@extends('layout.common')
-
-@section('title','登陆')
-
-@section('body')
-    <!-- login -->
-	<div class="pages section">
-		<div class="container">
-			<div class="pages-head">
-				<h3>LOGIN</h3>
-			</div>
-			<div class="login">
-				<div class="row">
-					<form class="col s12">
-						<div class="input-field">
-							<input type="text" class="validate" placeholder="USERNAME" required>
-						</div>
-						<div class="input-field">
-							<input type="password" class="validate" placeholder="PASSWORD" required>
-						</div>
-						<a href=""><h6>Forgot Password ?</h6></a>
-						<a href="" class="btn button-default">LOGIN</a>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end login -->
-@endsection
-
-@section('script')
-<script> 
-    $(function(){
-        console.log('1111111111111111');
-    });
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<title>student</title>
+</head>
+<body>
+<center>
+	<h1>login</h1>
+	<form action="{{url('student/do_login')}}" method="post">
+		@csrf
+		<input type="text" name="name">
+		<input type="password" name="password">
+		<input type="submit" value="提交">
+	</form>
+</center>
+<script type="text/javascript">
+	$(function(){
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		$.ajax({});
+	});
 </script>
-@endsection
+</body>
+</html>

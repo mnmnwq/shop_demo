@@ -15,7 +15,8 @@ class StudentController extends Controller
 	public function do_login(Request $request){
 		$req = $request->all();
 		$request->session()->put('username','name123');
-		return redirect('student/index');
+		$request->session()->put('uid','1');
+		return redirect('liuyan/index');
 	}
 
     public function index(Request $request){

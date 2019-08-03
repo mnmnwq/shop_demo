@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/wechat/code','WechatController@code');
+Route::get('/wechat/get_user_info','WechatController@get_user_info');
+Route::get('/wechat/get_user_list','WechatController@get_user_list');
+
+/// //////////////////////////////////////////////////////////////////////////////////////////
+
 //试题
 Route::get('question/add','QuestionController@add');
 Route::post('question/do_add','QuestionController@do_add');
@@ -47,6 +54,12 @@ Route::get('/admin','admin\indexController@index');
 
 Route::get('/student/login','StudentController@login');
 Route::post('/student/do_login','StudentController@do_login');
+
+Route::get('/liuyan/index','LiuYanController@index');
+Route::get('/liuyan/do_del','LiuYanController@do_del'); //删除留言
+
+Route::post('liuyan_info','LiuYanController@info');
+
 //浏览学生信息
 Route::get('/student/index', 'StudentController@index');
 
