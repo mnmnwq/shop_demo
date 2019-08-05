@@ -17,8 +17,15 @@ Route::get('/', function () {
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/wechat/code','WechatController@code');
+
+//上传素材
+Route::get('/wechat/upload_source','WechatController@upload_source');
+Route::get('wechat/do_upload','WechatController@do_upload');
+
+//第一周作业
 Route::get('/wechat/get_user_info','WechatController@get_user_info');
 Route::get('/wechat/get_user_list','WechatController@get_user_list');
+Route::get('/wechat/user_list','WechatController@user_list');
 
 /// //////////////////////////////////////////////////////////////////////////////////////////
 
