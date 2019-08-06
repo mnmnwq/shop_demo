@@ -18,43 +18,38 @@ class WechatController extends Controller
     }
 
     /**
-     * 推送模板消息
+     * 模板列表
      */
-    public function push_template()
+    public function template_list()
     {
-        $openid = 'otAUQ1XOd-dph7qQ_fDyDJqkUj90';
-        $url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->wechat->get_access_token();
+        $url = 'https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token='.$this->wechat->get_access_token();
+        $re = file_get_contents($url);
+        dd(json_decode($re,1));
+    }
+
+    public function del_template()
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/template/del_private_template?access_token='.$this->wechat->get_access_token();
         $data = [
-            'touser'=>$openid,
-            'template_id'=>'erO8fzlj0BXY_71coD9DqnJxNhPj6Qx2zOO1YBp-gmI',
-            'url'=>'http://www.baidu.com',
-            'data' => [
-                'first' => [
-                    'value' => '商品名称',
-                    'color' => ''
-                ],
-                'keyword1' => [
-                    'value' => '低价',
-                    'color' => ''
-                ],
-                'keyword2' => [
-                    'value' => '是低价',
-                    'color' => ''
-                ],
-                'remark' => [
-                    'value' => '备注',
-                    'color' => ''
-                ]
-            ]
+            'template_id' => 'cKsgHR1Azunc7wKy04pxJzu1oV2GRvE4gerEpGCadeI'
         ];
         $re = $this->wechat->post($url,json_encode($data));
         dd($re);
     }
 
-
+    /**
+     * 推送模板消息
+     */
+    public function push_template()
+    {
+        $openid_info = DB::connection('mysql_cart')->table("wechat_openid")->select('openid')->limit(10)->get()->toArray();
+        foreach($openid_info as $v){
+            $this->wechat->push_template($v->openid);
+        }
+    }
 
     /**
-     * 上传素材
+     * 我的素材
      */
     public function upload_source()
     {
@@ -65,22 +60,29 @@ class WechatController extends Controller
     {
         $client = new Client();
         if($request->hasFile('image')){
+            //图片类型
             $path = $request->file('image')->store('wechat/image');
             $path='./storage/'.$path;
             $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token=' . $this->wechat->get_access_token().'&type=image';
             $response = $client->request('POST',$url,[
                 'multipart' => [
                     [
+                        'name' => 'username',
+                        'contents' => 'xiaoming'
+                    ],
+                    [
                         'name'     => 'media',
                         'contents' => fopen(realpath($path), 'r')
                     ],
                 ]
             ]);
+            //返回信息
             $body = $response->getBody();
             unlink($path);
             echo $body;
            dd();
         }elseif($request->hasFile('voice')){
+            //音频类型
             //保存文件
             $img_file = $request->file('voice');
             $file_ext = $img_file->getClientOriginalExtension();          //获取文件扩展名
@@ -104,6 +106,7 @@ class WechatController extends Controller
             echo $body;
             dd();
         }elseif($request->hasFile('video')){
+            //视频
             //保存文件
             $img_file = $request->file('video');
             $file_ext = $img_file->getClientOriginalExtension();          //获取文件扩展名
@@ -127,6 +130,7 @@ class WechatController extends Controller
             echo $body;
             dd();
         }elseif($request->hasFile('thumb')){
+            //缩略图
             $path = $request->file('thumb')->store('wechat/thumb');
         }
 
@@ -160,6 +164,7 @@ class WechatController extends Controller
             //有数据 在网站有用户 user表有数据[ 登陆 ]
             $user_info = DB::connection('mysql_cart')->table("user")->where(['id'=>$user_openid->uid])->first();
             $request->session()->put('username',$user_info['name']);
+            //推送模板消息 [告诉用户你在我门的网站登录了]
             header('Location:www.myshop.com');
         }else{
             //没有数据 注册信息  insert user  user_openid   生成新用户
@@ -177,6 +182,7 @@ class WechatController extends Controller
             //登陆操作
             $user_info = DB::connection('mysql_cart')->table("user")->where(['id'=>$user_openid->uid])->first();
             $request->session()->put('username',$user_info['name']);
+            //你在我们的网站登录了
             header('Location:www.myshop.com');
         }
 

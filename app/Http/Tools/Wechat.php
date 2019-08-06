@@ -14,7 +14,49 @@ class Wechat{
         return $user_info;
     }
 
-    public function post($url, $data){
+    /**
+     * 根据openid发送模板消息
+     * @param $openid
+     * @return bool|string
+     */
+    public function push_template($openid)
+    {
+        //$openid = 'otAUQ1XOd-dph7qQ_fDyDJqkUj90';
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->get_access_token();
+        $data = [
+            'touser'=>$openid,
+            'template_id'=>'erO8fzlj0BXY_71coD9DqnJxNhPj6Qx2zOO1YBp-gmI',
+            'url'=>'http://www.baidu.com',
+            'data' => [
+                'first' => [
+                    'value' => '商品名称',
+                    'color' => ''
+                ],
+                'keyword1' => [
+                    'value' => '低价',
+                    'color' => ''
+                ],
+                'keyword2' => [
+                    'value' => '是低价',
+                    'color' => ''
+                ],
+                'remark' => [
+                    'value' => '备注',
+                    'color' => ''
+                ]
+            ]
+        ];
+        $re = $this->post($url,json_encode($data));
+        return $re;
+    }
+
+    /**
+     * post请求
+     * @param $url
+     * @param $data
+     * @return bool|string
+     */
+    public function post($url, $data = []){
         //初使化init方法
         $ch = curl_init();
         //指定URL
