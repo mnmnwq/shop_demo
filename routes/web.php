@@ -18,6 +18,7 @@ Route::get('/', function () {
 ////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/wechat/code','WechatController@code');
 Route::get('/wechat/login','WechatController@login');
+Route::get('/wechat/push_template','WechatController@push_template');
 
 //上传素材
 Route::get('/wechat/upload_source','WechatController@upload_source');

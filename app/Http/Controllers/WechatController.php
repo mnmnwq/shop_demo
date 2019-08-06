@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Tools\Wechat;
-use EasyWeChat\Factory;
-use GuzzleHttp\Pool;
 use GuzzleHttp\Client;
 
 class WechatController extends Controller
@@ -20,77 +18,123 @@ class WechatController extends Controller
     }
 
     /**
+     * 推送模板消息
+     */
+    public function push_template()
+    {
+        $openid = 'otAUQ1XOd-dph7qQ_fDyDJqkUj90';
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->wechat->get_access_token();
+        $data = [
+            'touser'=>$openid,
+            'template_id'=>'erO8fzlj0BXY_71coD9DqnJxNhPj6Qx2zOO1YBp-gmI',
+            'url'=>'http://www.baidu.com',
+            'data' => [
+                'first' => [
+                    'value' => '商品名称',
+                    'color' => ''
+                ],
+                'keyword1' => [
+                    'value' => '低价',
+                    'color' => ''
+                ],
+                'keyword2' => [
+                    'value' => '是低价',
+                    'color' => ''
+                ],
+                'remark' => [
+                    'value' => '备注',
+                    'color' => ''
+                ]
+            ]
+        ];
+        $re = $this->wechat->post($url,json_encode($data));
+        dd($re);
+    }
+
+
+
+    /**
      * 上传素材
      */
     public function upload_source()
     {
-        $config = [
-            'app_id' => env("WECHAT_APPID"),
-            'secret' => env("WECHAT_APPSECRET"),
-            'token' => 'token',
-            'response_type' => 'array',
-        ];
-        $app = Factory::officialAccount($config);
-        $path='./storage/wechat/image/a1witFOK3QkaLia01o5BkD0o72W5GX3WEZGviIfg.jpeg';
-        //realpath($path)
-//        $re = $app->media->uploadImage(realpath($path));
-        $client = new Client();
-        $body = fopen(realpath($path), 'r');
-        $r = $client->request('POST', 'http://httpbin.org/post', ['media' => $body]);
-        dd($r->getBody());
         return view('wechat.uploadSource');
     }
 
     public function do_upload(Request $request)
     {
+        $client = new Client();
         if($request->hasFile('image')){
-            $file = $request->file('image');
-            //$path = $request->file('image')->store('wechat'.$fenge.'image');
-            $image_name = 'a1witFOK3QkaLia01o5BkD0o72W5GX3WEZGviIfg.jpeg';
-            $type = 'image';
-            $path='./storage/wechat/image/a1witFOK3QkaLia01o5BkD0o72W5GX3WEZGviIfg.jpeg';
-            $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token=' . $this->get_access_token() .'&type='.$type;
-            $data = ['media' => new \CURLFile(realpath($path))];
-            dd($data);
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL,$url);
-            curl_setopt($curl, CURLOPT_POST, 1 );
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_USERAGENT,"TEST");
-            $result = curl_exec($curl);
-            curl_close($curl);
-            $res=json_decode($result,true);
-            dd($res);
+            $path = $request->file('image')->store('wechat/image');
+            $path='./storage/'.$path;
+            $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token=' . $this->wechat->get_access_token().'&type=image';
+            $response = $client->request('POST',$url,[
+                'multipart' => [
+                    [
+                        'name'     => 'media',
+                        'contents' => fopen(realpath($path), 'r')
+                    ],
+                ]
+            ]);
+            $body = $response->getBody();
+            unlink($path);
+            echo $body;
+           dd();
         }elseif($request->hasFile('voice')){
-            $path = $request->file('voice')->store('wechat/voice');
+            //保存文件
+            $img_file = $request->file('voice');
+            $file_ext = $img_file->getClientOriginalExtension();          //获取文件扩展名
+            //重命名
+            $new_file_name = time().rand(1000,9999). '.'.$file_ext;
+            //文件保存路径
+            //保存文件
+            $save_file_path = $img_file->storeAs('wechat/voice',$new_file_name);       //返回保存成功之后的文件路径
+            $path = './storage/'.$save_file_path;
+            $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token='.$this->wechat->get_access_token().'&type=voice';
+            $response = $client->request('POST',$url,[
+                'multipart' => [
+                    [
+                        'name'     => 'media',
+                        'contents' => fopen(realpath($path), 'r')
+                    ],
+                ]
+            ]);
+            $body = $response->getBody();
+            unlink(realpath($path));
+            echo $body;
+            dd();
         }elseif($request->hasFile('video')){
-            $path = $request->file('video')->store('wechat/video');
+            //保存文件
+            $img_file = $request->file('video');
+            $file_ext = $img_file->getClientOriginalExtension();          //获取文件扩展名
+            //重命名
+            $new_file_name = time().rand(1000,9999). '.'.$file_ext;
+            //文件保存路径
+            //保存文件
+            $save_file_path = $img_file->storeAs('wechat/video',$new_file_name);       //返回保存成功之后的文件路径
+            $path = './storage/'.$save_file_path;
+            $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token='.$this->wechat->get_access_token().'&type=video';
+            $response = $client->request('POST',$url,[
+                'multipart' => [
+                    [
+                        'name'     => 'media',
+                        'contents' => fopen(realpath($path), 'r')
+                    ],
+                ]
+            ]);
+            $body = $response->getBody();
+            unlink(realpath($path));
+            echo $body;
+            dd();
         }elseif($request->hasFile('thumb')){
             $path = $request->file('thumb')->store('wechat/thumb');
         }
 
     }
 
-    function posturl($url,$data){
-        $data  = json_encode($data);
-        $headerArray =array("Content-type:application/json;charset='utf-8'","Accept:application/json");
-        $curl = curl_init();
-        curl_setopt($curl,CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST,FALSE);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($curl,CURLOPT_HTTPHEADER,$headerArray);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($curl);
-        curl_close($curl);
-        return json_decode($output,1);
-    }
-
     public function login(){
         $redirect_uri = 'http://www.shopdemo.com/wechat/code';
-        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect ';
+        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect ';
         header('Location:'.$url);
     }
 
@@ -107,9 +151,29 @@ class WechatController extends Controller
         $result = json_decode($re,1);
         $access_token = $result['access_token'];
         $openid = $result['openid'];
+        $wechat_user_info = $this->wechat->wechat_user_info($openid);
         //去user_openid 表查 是否有数据 openid = $openid
-        //有数据 在网站有用户 user表有数据[ 登陆 ]
-        //没有数据 注册信息  insert user  user_openid   生成新用户
+        $user_openid = DB::connection('mysql_cart')->table("user_wechat")->where(['openid'=>$openid])->first();
+        if(!empty($user_openid)){
+            //有数据 在网站有用户 user表有数据[ 登陆 ]
+            $user_info = DB::connection('mysql_cart')->table("user")->where(['id'=>$user_openid->uid])->first();
+            $request->session()->put('username',$user_info['name']);
+        }else{
+            //没有数据 注册信息  insert user  user_openid   生成新用户
+            DB::connection("mysql_cart")->beginTransaction();
+            $user_result = DB::connection('mysql_cart')->table('user')->insertGetId([
+                'password' => '',
+                'name' => $wechat_user_info['nickname'],
+                'reg_time' => time()
+            ]);
+            $openid_result = DB::connection('mysql_cart')->table('user_wechat')->insert([
+                'uid'=>$user_result,
+                'openid' => $openid,
+            ]);
+            DB::connection('mysql_cart')->commit();
+        }
+
+
     }
 
     public function get_user_info()
@@ -120,7 +184,7 @@ class WechatController extends Controller
     }
 
     public function wechat_user_info($openid){
-        $access_token = $this->get_access_token();
+        $access_token = $this->wechat->get_access_token();
         $wechat_user = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid."&lang=zh_CN");
         $user_info = json_decode($wechat_user,1);
         return $user_info;
@@ -137,7 +201,7 @@ class WechatController extends Controller
 
     public function get_user_list()
     {
-        $access_token = $this->get_access_token();
+        $access_token = $this->wechat->get_access_token();
         //拉取关注用户列表
         $wechat_user = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/get?access_token={$access_token}&next_openid=");
         $user_info = json_decode($wechat_user,1);
@@ -154,7 +218,7 @@ class WechatController extends Controller
                 ]);
             }else{
                 //获取用户详细信息
-                $access_token = $this->get_access_token();
+                $access_token = $this->wechat->get_access_token();
                 $openid = $v;
                 $wechat_user = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid."&lang=zh_CN");
                 $user = json_decode($wechat_user,1);
@@ -168,26 +232,4 @@ class WechatController extends Controller
         echo "<script>history.go(-1);</script>";
     }
 
-    /**
-     * 获取access_token
-     */
-    public function get_access_token(){
-        //获取access_token
-        $redis = new \Redis();
-        $redis->connect('127.0.0.1','6379');
-        $access_token_key = 'wechat_access_token';
-        if($redis->exists($access_token_key)){
-            //去缓存拿
-            $access_token = $redis->get($access_token_key);
-        }else{
-            //去微信接口拿
-            $access_re = file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('WECHAT_APPID')."&secret=".env('WECHAT_APPSECRET'));
-            $access_result = json_decode($access_re,1);
-            $access_token = $access_result['access_token'];
-            $expire_time = $access_result['expires_in'];
-            //加入缓存
-            $redis->set($access_token_key,$access_token,$expire_time);
-        }
-        return $access_token;
-    }
 }
