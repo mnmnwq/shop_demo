@@ -151,13 +151,16 @@ class WechatController extends Controller
         $result = json_decode($re,1);
         $access_token = $result['access_token'];
         $openid = $result['openid'];
+        //获取用户基本信息
         $wechat_user_info = $this->wechat->wechat_user_info($openid);
+
         //去user_openid 表查 是否有数据 openid = $openid
         $user_openid = DB::connection('mysql_cart')->table("user_wechat")->where(['openid'=>$openid])->first();
         if(!empty($user_openid)){
             //有数据 在网站有用户 user表有数据[ 登陆 ]
             $user_info = DB::connection('mysql_cart')->table("user")->where(['id'=>$user_openid->uid])->first();
             $request->session()->put('username',$user_info['name']);
+            header('Location:www.myshop.com');
         }else{
             //没有数据 注册信息  insert user  user_openid   生成新用户
             DB::connection("mysql_cart")->beginTransaction();
@@ -171,6 +174,10 @@ class WechatController extends Controller
                 'openid' => $openid,
             ]);
             DB::connection('mysql_cart')->commit();
+            //登陆操作
+            $user_info = DB::connection('mysql_cart')->table("user")->where(['id'=>$user_openid->uid])->first();
+            $request->session()->put('username',$user_info['name']);
+            header('Location:www.myshop.com');
         }
 
 
