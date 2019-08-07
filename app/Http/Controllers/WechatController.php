@@ -27,7 +27,8 @@ class WechatController extends Controller
         $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
         $xml = (array)$xml; //转化成数组
         \Log::Info(json_encode($xml));
-        $echostr = $_GET['echostr'];
+
+        echo $_GET['echostr'];
     }
     /**
      * 模板列表
