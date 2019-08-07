@@ -56,7 +56,12 @@ class WechatController extends Controller
      */
     public function upload_source()
     {
-        return view('wechat.uploadSource');
+//        $url = 'https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token='.$this->wechat->get_access_token();
+//        $data = ['type'=>'image','offset'=>0,'count'=>20];
+//        $re = $this->wechat->post($url,json_encode($data));
+//        echo '<pre>';
+//        print_r(json_decode($re,1));
+        return view('Wechat.uploadSource');
     }
 
     public function get_voice_source()
@@ -229,7 +234,7 @@ class WechatController extends Controller
     public function user_list()
     {
         $openid_info = DB::connection('mysql_cart')->table('wechat_openid')->get();
-        return view('wechat.userList',['openid_info'=>$openid_info]);
+        return view('Wechat.userList',['openid_info'=>$openid_info]);
     }
 
     public function get_user_list()

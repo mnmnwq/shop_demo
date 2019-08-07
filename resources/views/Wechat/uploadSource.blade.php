@@ -21,6 +21,9 @@
         文件：<input type="file" name="thumb" value=""><br/><br/>
         <input type="submit" name="" value="提交">
     </form>
+
+    <h2>永久素材列表</h2>
+
 </center>
 </body>
 </html>

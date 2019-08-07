@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ac1ad87-c425-4264-b053-d741c4a0281e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Tools/Wechat.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Tools/Wechat.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Wechat/uploadSource.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Wechat/uploadSource.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="151" column="14" selection-start-line="151" selection-start-column="14" selection-end-line="151" selection-end-column="14" />
+            <state relative-caret-position="500">
+              <caret line="135" column="11" lean-forward="true" selection-start-line="135" selection-start-column="11" selection-end-line="135" selection-end-column="11" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
                 <element signature="e#363#402#0#PHP" />
@@ -48,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Tools/Wechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
+            <state relative-caret-position="850">
+              <caret line="39" column="74" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="74" />
               <folding>
                 <element signature="e#114#136#0#PHP" expanded="true" />
               </folding>
@@ -58,10 +57,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/File/UploadedFile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="535">
+              <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Wechat/uploadSource.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+            <state relative-caret-position="458">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -115,8 +123,8 @@
         <option value="$PROJECT_DIR$/vendor/overtrue/wechat/src/Kernel/Traits/HasHttpRequests.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/Wechat/uploadSource.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Tools/Wechat.php" />
+        <option value="$PROJECT_DIR$/resources/views/Wechat/uploadSource.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" />
       </list>
     </option>
@@ -291,6 +299,11 @@
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="wechat" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="shop_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shop_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -339,12 +352,12 @@
       <workItem from="1564644088489" duration="1061000" />
       <workItem from="1564706491899" duration="4158000" />
       <workItem from="1564735863613" duration="4498000" />
-      <workItem from="1564808136068" duration="60945000" />
+      <workItem from="1564808136068" duration="64069000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85791000" />
+    <option name="totallyTimeSpent" value="88915000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -372,7 +385,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3286219" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32742155" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -652,13 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/File/UploadedFile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="96" column="42" lean-forward="true" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/app/public/wechat/image/ejU-DNDucyme6x_n.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -671,15 +677,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Wechat/uploadSource.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+        <state relative-caret-position="458">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/File/UploadedFile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Tools/Wechat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
+        <state relative-caret-position="850">
+          <caret line="39" column="74" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="74" />
           <folding>
             <element signature="e#114#136#0#PHP" expanded="true" />
           </folding>
@@ -688,8 +701,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="151" column="14" selection-start-line="151" selection-start-column="14" selection-end-line="151" selection-end-column="14" />
+        <state relative-caret-position="500">
+          <caret line="135" column="11" lean-forward="true" selection-start-line="135" selection-start-column="11" selection-end-line="135" selection-end-column="11" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
             <element signature="e#363#402#0#PHP" />
