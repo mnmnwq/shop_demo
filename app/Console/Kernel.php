@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             //业务逻辑
-            \Log::Info('进入调度了!');
+            //\Log::Info('进入调度了!');
         })->everyMinute();
         
     }

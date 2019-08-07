@@ -64,11 +64,11 @@ class WechatController extends Controller
      */
     public function upload_source()
     {
-//        $url = 'https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token='.$this->wechat->get_access_token();
-//        $data = ['type'=>'image','offset'=>0,'count'=>20];
-//        $re = $this->wechat->post($url,json_encode($data));
-//        echo '<pre>';
-//        print_r(json_decode($re,1));
+        $url = 'https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token='.$this->wechat->get_access_token();
+        $data = ['type'=>'image','offset'=>0,'count'=>20];
+        $re = $this->wechat->post($url,json_encode($data));
+        echo '<pre>';
+        print_r(json_decode($re,1));
         return view('Wechat.uploadSource');
     }
 
@@ -104,7 +104,7 @@ class WechatController extends Controller
         $opts=array(
             "http"=>array(
                 "method"=>"GET",
-                "timeout"=>3
+                "timeout"=>3  //单位秒
             ),
         );
         //创建数据流上下文
@@ -133,7 +133,7 @@ class WechatController extends Controller
         //$wx_image_path = 'wx/images/'.$file_name;
         //保存图片
         $path = 'wechat/image/'.$file_name;
-        $re = Storage::put($path, $response->getBody());
+        $re = Storage::disk('local')->put($path, $response->getBody());
         echo env('APP_URL').'/storage/'.$path;
         dd($re);
 

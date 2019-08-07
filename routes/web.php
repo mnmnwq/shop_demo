@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-Route::post('/wechat/event','WechatController@event');
+Route::any('/wechat/event','WechatController@event');
 
 Route::get('/wechat/code','WechatController@code');
 Route::get('/wechat/login','WechatController@login');
