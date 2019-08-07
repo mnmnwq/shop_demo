@@ -28,7 +28,7 @@ class WechatController extends Controller
         $xml = (array)$xml; //转化成数组
         \Log::Info(json_encode($xml));
 
-        echo $_GET['echostr'];
+        //echo $_GET['echostr'];
     }
     /**
      * 模板列表
@@ -278,6 +278,31 @@ class WechatController extends Controller
             }
         }
         echo "<script>history.go(-1);</script>";
+    }
+
+    public function checkSignature()
+    {
+        //先获取到这三个参数
+        $signature = $_GET['signature'];
+        $nonce = $_GET['nonce'];
+        $timestamp = $_GET['timestamp'];
+
+        //把这三个参数存到一个数组里面
+        $tmpArr = [$timestamp,$nonce,'token'];
+        //进行字典排序
+        sort($tmpArr);
+
+        //把数组中的元素合并成字符串，impode()函数是用来将一个数组合并成字符串的
+        $tmpStr = implode($tmpArr);
+
+        //sha1加密，调用sha1函数
+        $tmpStr = sha1($tmpStr);
+        //判断加密后的字符串是否和signature相等
+        if($tmpStr == $signature)
+        {
+            echo $_GET['echostr'];
+        }
+
     }
 
 }
