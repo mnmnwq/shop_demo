@@ -25,6 +25,9 @@ Route::get('/wechat/push_template','WechatController@push_template');
 
 //上传素材
 Route::get('/wechat/upload_source','WechatController@upload_source');
+Route::get('/wechat/get_source','WechatController@get_source');
+Route::get('/wechat/get_video_source','WechatController@get_video_source');
+Route::get('/wechat/get_voice_source','WechatController@get_voice_source');
 Route::post('wechat/do_upload','WechatController@do_upload');
 
 //第一周作业

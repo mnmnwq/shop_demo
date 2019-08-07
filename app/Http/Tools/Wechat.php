@@ -6,12 +6,60 @@
  * Time: 10:37
  */
 namespace  App\Http\Tools;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 class Wechat{
+    public  $request;
+    public  $client;
+    public function __construct(Request $request,Client $client)
+    {
+        $this->request = $request;
+        $this->client = $client;
+    }
+
     public function wechat_user_info($openid){
         $access_token = $this->get_access_token();
         $wechat_user = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid."&lang=zh_CN");
         $user_info = json_decode($wechat_user,1);
         return $user_info;
+    }
+
+    /**
+     * 上传微信素材资源
+     */
+    public function upload_source($up_type,$type,$title='',$desc=''){
+        $file = $this->request->file($type);
+        $file_ext = $file->getClientOriginalExtension();          //获取文件扩展名
+        //重命名
+        $new_file_name = time().rand(1000,9999). '.'.$file_ext;
+        //文件保存路径
+        //保存文件
+        $save_file_path = $file->storeAs('wechat/video',$new_file_name);       //返回保存成功之后的文件路径
+        $path = './storage/'.$save_file_path;
+        if($up_type  == 1){
+            $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token=' . $this->get_access_token().'&type='.$type;
+        }elseif($up_type == 2){
+            $url = 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token='.$this->get_access_token().'&type='.$type;
+        }
+        $multipart = [
+            [
+                'name'     => 'media',
+                'contents' => fopen(realpath($path), 'r')
+            ],
+        ];
+        if($type == 'video' && $up_type == 2){
+            $multipart[] = [
+                    'name'     => 'description',
+                    'contents' => json_encode(['title'=>$title,'introduction'=>$desc])
+            ];
+        }
+        $response = $this->client->request('POST',$url,[
+            'multipart' => $multipart
+        ]);
+        //返回信息
+        $body = $response->getBody();
+        unlink($path);
+        return $body;
     }
 
     /**

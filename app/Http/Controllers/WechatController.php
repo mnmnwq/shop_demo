@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Tools\Wechat;
 use GuzzleHttp\Client;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class WechatController extends Controller
 {
@@ -56,83 +59,100 @@ class WechatController extends Controller
         return view('wechat.uploadSource');
     }
 
+    public function get_voice_source()
+    {
+        $media_id = 'UKml31rzRRlr8lYfWgAno9mGe-meph0BKmVtZugAHQTqZIxOhUoBvCnqfJMRMKTG';
+        $url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->wechat->get_access_token().'&media_id='.$media_id;
+        //echo $url;echo '</br>';
+        //保存图片
+        $client = new Client();
+        $response = $client->get($url);
+        //$h = $response->getHeaders();
+        //echo '<pre>';print_r($h);echo '</pre>';die;
+        //获取文件名
+        $file_info = $response->getHeader('Content-disposition');
+        $file_name = substr(rtrim($file_info[0],'"'),-20);
+        //$wx_image_path = 'wx/images/'.$file_name;
+        //保存图片
+        $path = 'wechat/voice/'.$file_name;
+        $re = Storage::put($path, $response->getBody());
+        echo env('APP_URL').'/storage/'.$path;
+        dd($re);
+    }
+
+    public function get_video_source(){
+        $media_id = 'f9-GxYnNAinpu3qY4oFadJaodRVvB6JybJOhdjdbh7Z0CR0bm8nO4uh8bqSaiS_d'; //视频
+        $url = 'http://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->wechat->get_access_token().'&media_id='.$media_id;
+        $client = new Client();
+        $response = $client->get($url);
+        $video_url = json_decode($response->getBody(),1)['video_url'];
+        $file_name = explode('/',parse_url($video_url)['path'])[2];
+        //设置超时参数
+        $opts=array(
+            "http"=>array(
+                "method"=>"GET",
+                "timeout"=>3
+            ),
+        );
+        //创建数据流上下文
+        $context = stream_context_create($opts);
+        //$url请求的地址，例如：
+        $read = file_get_contents($video_url,false, $context);
+        $re = file_put_contents('./storage/wechat/video/'.$file_name,$read);
+        var_dump($re);
+        die();
+    }
+
+    public function get_source()
+    {
+        $media_id = 'pREe_hxV86zjyFsmSlMNnewpYTFf5x6NuckIDkOTLgcF58FhejU-DNDucyme6x_n'; //图片
+
+        $url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->wechat->get_access_token().'&media_id='.$media_id;
+        //echo $url;echo '</br>';
+        //保存图片
+        $client = new Client();
+        $response = $client->get($url);
+        //$h = $response->getHeaders();
+        //echo '<pre>';print_r($h);echo '</pre>';die;
+        //获取文件名
+        $file_info = $response->getHeader('Content-disposition');
+        $file_name = substr(rtrim($file_info[0],'"'),-20);
+        //$wx_image_path = 'wx/images/'.$file_name;
+        //保存图片
+        $path = 'wechat/image/'.$file_name;
+        $re = Storage::put($path, $response->getBody());
+        echo env('APP_URL').'/storage/'.$path;
+        dd($re);
+
+        //return $file_name;
+    }
+
+    /**
+     * 上传资源
+     * @param Request $request
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function do_upload(Request $request)
     {
-        $client = new Client();
+        $upload_type = $request['up_type'];
+        $re = '';
         if($request->hasFile('image')){
             //图片类型
-            $path = $request->file('image')->store('wechat/image');
-            $path='./storage/'.$path;
-            $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token=' . $this->wechat->get_access_token().'&type=image';
-            $response = $client->request('POST',$url,[
-                'multipart' => [
-                    [
-                        'name' => 'username',
-                        'contents' => 'xiaoming'
-                    ],
-                    [
-                        'name'     => 'media',
-                        'contents' => fopen(realpath($path), 'r')
-                    ],
-                ]
-            ]);
-            //返回信息
-            $body = $response->getBody();
-            unlink($path);
-            echo $body;
-           dd();
+            $re = $this->wechat->upload_source($upload_type,'image');
         }elseif($request->hasFile('voice')){
             //音频类型
             //保存文件
-            $img_file = $request->file('voice');
-            $file_ext = $img_file->getClientOriginalExtension();          //获取文件扩展名
-            //重命名
-            $new_file_name = time().rand(1000,9999). '.'.$file_ext;
-            //文件保存路径
-            //保存文件
-            $save_file_path = $img_file->storeAs('wechat/voice',$new_file_name);       //返回保存成功之后的文件路径
-            $path = './storage/'.$save_file_path;
-            $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token='.$this->wechat->get_access_token().'&type=voice';
-            $response = $client->request('POST',$url,[
-                'multipart' => [
-                    [
-                        'name'     => 'media',
-                        'contents' => fopen(realpath($path), 'r')
-                    ],
-                ]
-            ]);
-            $body = $response->getBody();
-            unlink(realpath($path));
-            echo $body;
-            dd();
+            $re = $this->wechat->upload_source($upload_type,'voice');
         }elseif($request->hasFile('video')){
             //视频
             //保存文件
-            $img_file = $request->file('video');
-            $file_ext = $img_file->getClientOriginalExtension();          //获取文件扩展名
-            //重命名
-            $new_file_name = time().rand(1000,9999). '.'.$file_ext;
-            //文件保存路径
-            //保存文件
-            $save_file_path = $img_file->storeAs('wechat/video',$new_file_name);       //返回保存成功之后的文件路径
-            $path = './storage/'.$save_file_path;
-            $url='https://api.weixin.qq.com/cgi-bin/media/upload?access_token='.$this->wechat->get_access_token().'&type=video';
-            $response = $client->request('POST',$url,[
-                'multipart' => [
-                    [
-                        'name'     => 'media',
-                        'contents' => fopen(realpath($path), 'r')
-                    ],
-                ]
-            ]);
-            $body = $response->getBody();
-            unlink(realpath($path));
-            echo $body;
-            dd();
+            $re = $this->wechat->upload_source($upload_type,'video','视频标题','视频描述');
         }elseif($request->hasFile('thumb')){
             //缩略图
             $path = $request->file('thumb')->store('wechat/thumb');
         }
+        echo $re;
+        dd();
 
     }
 
