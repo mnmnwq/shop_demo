@@ -20,6 +20,14 @@ class WechatController extends Controller
         $this->wechat = $wechat;
     }
 
+    public function event()
+    {
+        $data = file_get_contents("php://input");
+        //解析XML
+        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
+        $xml = (array)$xml; //转化成数组
+        \Log::Info(json_encode($xml));
+    }
     /**
      * 模板列表
      */
