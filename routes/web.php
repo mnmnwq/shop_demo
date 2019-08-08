@@ -16,7 +16,16 @@ Route::get('/', function () {
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-Route::any('/wechat/event','WechatController@event');
+Route::any('/wechat/event','WechatController@event'); //接收公众号事件
+//用户标签相关
+Route::get('/wechat/tag_list','WechatController@tag_list'); //标签列表
+Route::get('/wechat/add_tag','WechatController@add_tag'); //添加标签
+Route::get('/wechat/do_add_tag','WechatController@do_add_tag'); //执行添加标签
+Route::post('/wechat/add_user_tag','WechatController@add_user_tag'); //为用户打标签
+Route::get('/wechat/del_tag','WechatController@del_tag'); //删除标签
+Route::get('/wechat/tag_user','WechatController@tag_user'); //标签下用户列表
+Route::get('/wechat/get_user_tag','WechatController@get_user_tag'); //获取用户标签
+Route::get('/wechat/del_user_tag','WechatController@del_user_tag'); //删除用户标签
 
 Route::get('/wechat/code','WechatController@code');
 Route::get('/wechat/login','WechatController@login');

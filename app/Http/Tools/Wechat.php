@@ -17,6 +17,22 @@ class Wechat{
         $this->client = $client;
     }
 
+    /**
+     * 公众号的标签列表
+     */
+    public function wechat_tag_list()
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/tags/get?access_token='.$this->get_access_token();
+        $re = file_get_contents($url);
+        $tag_info = json_decode($re,1);
+        return $tag_info;
+    }
+
+    /**
+     * 通过openid获取用户信息
+     * @param $openid
+     * @return mixed
+     */
     public function wechat_user_info($openid){
         $access_token = $this->get_access_token();
         $wechat_user = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid."&lang=zh_CN");

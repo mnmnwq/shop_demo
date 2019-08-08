@@ -20,6 +20,121 @@ class WechatController extends Controller
         $this->wechat = $wechat;
     }
 
+    /**
+     * 获取用户标签
+     */
+    public function get_user_tag(Request $request){
+        $url = 'https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token='.$this->wechat->get_access_token();
+        $data = ['openid'=>$request->all()['openid']];
+        $re = $this->wechat->post($url,json_encode($data));
+        $user_tag_info = json_decode($re,1);
+        $tag_info = $this->wechat->wechat_tag_list();
+        $tag_arr = $tag_info['tags'];
+        foreach($tag_arr as $v){
+            foreach($user_tag_info['tagid_list'] as $vo){
+                if($vo == $v['id']){
+                    echo $v['name']."<a href='".env('APP_URL').'/wechat/del_user_tag'.'?tag_id='.$v['id'].'&openid='.$request->all()['openid']."'>删除</a><br/>";
+                }
+            }
+        }
+    }
+
+    /**
+     * 为用户删除标签
+     * @param Request $request
+     */
+    public function del_user_tag(Request $request)
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token='.$this->wechat->get_access_token();
+        if(!is_array($request->all()['openid'])){
+            $openid_list = [$request->all()['openid']];
+        }else{
+            $openid_list = $request->all()['openid'];
+        }
+        $data = [
+            'openid_list' => $openid_list,
+            'tagid' => $request->all()['tag_id']
+        ];
+        $re = $this->wechat->post($url,json_encode($data));
+        dd(json_decode($re,1));
+    }
+
+    /**
+     * 标签列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function tag_list(){
+        $tag_info = $this->wechat->wechat_tag_list();
+        return view('Wechat/tagList',['info'=>$tag_info['tags']]);
+    }
+
+    /**
+     * 删除标签
+     * @param Request $request
+     */
+    public function del_tag(Request $request){
+        $url = 'https://api.weixin.qq.com/cgi-bin/tags/delete?access_token='.$this->wechat->get_access_token();
+        $data = [
+            'tag' => ['id' => $request->all()['id']]
+        ];
+        $re = $this->wechat->post($url,json_encode($data));
+        $result = json_decode($re,1);
+        dd($result);
+    }
+
+    public function add_tag(){
+        return view('Wechat.addTag');
+    }
+
+    /**
+     * 批量给用户打标签
+     */
+    public function add_user_tag(Request $request)
+    {
+        $openid_info = DB::connection('mysql_cart')->table('wechat_openid')->whereIn('id',$request->all()['id_list'])->select(['openid'])->get()->toArray();
+        $openid_list = [];
+        foreach($openid_info as $v){
+            $openid_list[] = $v->openid;
+        }
+        $url = 'https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token='.$this->wechat->get_access_token();
+        $data = [
+            'openid_list'=>$openid_list,
+            'tagid'=>$request->all()['tagid'],
+        ];
+        $re = $this->wechat->post($url,json_encode($data));
+        dd(json_decode($re,1));
+    }
+
+    /**
+     * 添加标签
+     */
+    public function do_add_tag(Request $request)
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/tags/create?access_token='.$this->wechat->get_access_token();
+        $data = [
+            'tag' => ['name'=>$request->all()['name']]
+        ];
+        $re = $this->wechat->post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
+        dd(json_decode($re,1));
+    }
+
+    /**
+     * 标签下的粉丝列表
+     */
+    public function tag_user(Request $request)
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token='.$this->wechat->get_access_token();
+        $data = [
+            'tagid' => $request->all()['id'],
+            'next_openid' => ''
+        ];
+        $re = $this->wechat->post($url,json_encode($data));
+
+        dd(json_decode($re,1));
+    }
+
+
+
     public function event()
     {
         $data = file_get_contents("php://input");
@@ -241,10 +356,11 @@ class WechatController extends Controller
     /**
      * 粉丝列表
      */
-    public function user_list()
+    public function user_list(Request $request)
     {
+        $tag_id = !empty($request->all()['tag_id'])?$request->all()['tag_id']:'';
         $openid_info = DB::connection('mysql_cart')->table('wechat_openid')->get();
-        return view('Wechat.userList',['openid_info'=>$openid_info]);
+        return view('Wechat.userList',['openid_info'=>$openid_info,'tag_id'=>$tag_id]);
     }
 
     public function get_user_list()
@@ -280,6 +396,9 @@ class WechatController extends Controller
         echo "<script>history.go(-1);</script>";
     }
 
+    /**
+     * 消息加密验证
+     */
     public function checkSignature()
     {
         //先获取到这三个参数
