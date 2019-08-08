@@ -26,6 +26,8 @@ Route::get('/wechat/del_tag','WechatController@del_tag'); //删除标签
 Route::get('/wechat/tag_user','WechatController@tag_user'); //标签下用户列表
 Route::get('/wechat/get_user_tag','WechatController@get_user_tag'); //获取用户标签
 Route::get('/wechat/del_user_tag','WechatController@del_user_tag'); //删除用户标签
+Route::get('/wechat/push_tag_message','WechatController@push_tag_message'); //根据标签推送消息
+Route::post('/wechat/do_push_tag_message','WechatController@do_push_tag_message'); //执行根据标签推送消息
 
 Route::get('/wechat/code','WechatController@code');
 Route::get('/wechat/login','WechatController@login');

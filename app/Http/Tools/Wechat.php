@@ -18,6 +18,20 @@ class Wechat{
     }
 
     /**
+     * 根据标签id获取标签粉丝
+     */
+    public function tag_user($tag_id)
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token='.$this->get_access_token();
+        $data = [
+            'tagid' => $tag_id,
+            'next_openid' => ''
+        ];
+        $re = $this->post($url,json_encode($data));
+        return json_decode($re,1);
+    }
+
+    /**
      * 公众号的标签列表
      */
     public function wechat_tag_list()

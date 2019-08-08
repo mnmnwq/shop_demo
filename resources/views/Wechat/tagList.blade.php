@@ -25,7 +25,8 @@
             <td>
                 <a href="{{url('wechat/del_tag')}}?id={{$v['id']}}">删除</a> |
                 <a href="{{url('wechat/tag_user')}}?id={{$v['id']}}">粉丝列表</a> |
-                <a href="{{url('wechat/user_list')}}?tag_id={{$v['id']}}">为粉丝打标签</a>
+                <a href="{{url('wechat/user_list')}}?tag_id={{$v['id']}}">为粉丝打标签</a> |
+                <a href="{{url('wechat/push_tag_message')}}?tag_id={{$v['id']}}">推送消息</a>
             </td>
         </tr>
         @endforeach

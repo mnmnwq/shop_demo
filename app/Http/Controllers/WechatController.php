@@ -21,6 +21,42 @@ class WechatController extends Controller
     }
 
     /**
+     * 根据标签为用户推送消息
+     */
+    public function push_tag_message(Request $request)
+    {
+        $re = $this->wechat->tag_user($request->all()['tag_id']);
+        return view('Wechat.pushTagMessage',['openid'=>json_encode($re['data']['openid']),'tag_id'=>$request->all()['tag_id']]);
+    }
+
+    /**
+     * 执行根据标签为用户推送消息
+     * @param Request $request
+     */
+    public function do_push_tag_message(Request $request)
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token='.$this->wechat->get_access_token();
+        $push_type = $request->all()['push_type'];
+        if($push_type == 1){
+            //文本消息
+            $data = [
+                'filter' => ['is_to_all'=>false,'tag_id'=>$request->all()['tag_id']],
+                'text' => ['content' => $request->all()['message']],
+                'msgtype' => 'text'
+            ];
+        }elseif($push_type == 2){
+            //素材消息 图
+            $data = [
+                'filter' => ['is_to_all'=>false,'tag_id'=>$request->all()['tag_id']],
+                'image' => ['media_id' => $request->all()['media_id']],
+                'msgtype' => 'image'
+            ];
+        }
+        $re = $this->wechat->post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
+        dd(json_decode($re,1));
+    }
+
+    /**
      * 获取用户标签
      */
     public function get_user_tag(Request $request){
@@ -123,14 +159,8 @@ class WechatController extends Controller
      */
     public function tag_user(Request $request)
     {
-        $url = 'https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token='.$this->wechat->get_access_token();
-        $data = [
-            'tagid' => $request->all()['id'],
-            'next_openid' => ''
-        ];
-        $re = $this->wechat->post($url,json_encode($data));
-
-        dd(json_decode($re,1));
+        $re = $this->wechat->tag_user($request->all()['id']);
+        dd($re);
     }
 
 
