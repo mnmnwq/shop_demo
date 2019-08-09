@@ -21,6 +21,31 @@ class WechatController extends Controller
     }
 
     /**
+     * 修改标签
+     */
+    public function update_tag(Request $request)
+    {
+        return view('Wechat.updateTag',['tag_id'=>$request->all()['tag_id'],'tag_name'=>$request->all()['tag_name']]);
+    }
+
+    /**
+     * 执行修改标签
+     * @param Request $request
+     */
+    public function do_update_tag(Request $request)
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/tags/update?access_token='.$this->wechat->get_access_token();
+        $data = [
+            'tag' => [
+                'id' => $request->all()['tag_id'],
+                'name' => $request->all()['name']
+            ]
+        ];
+        $re = $this->wechat->post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
+        dd(json_decode($re,1));
+    }
+
+    /**
      * 根据标签为用户推送消息
      */
     public function push_tag_message(Request $request)

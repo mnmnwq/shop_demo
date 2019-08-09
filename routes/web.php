@@ -18,6 +18,8 @@ Route::get('/', function () {
 ////////////////////////////////////////////////////////////////////////////////////////////
 Route::any('/wechat/event','WechatController@event'); //接收公众号事件
 //用户标签相关
+Route::get('/wechat/update_tag','WechatController@update_tag'); //修改标签
+Route::post('/wechat/do_update_tag','WechatController@do_update_tag'); //执行修改标签
 Route::get('/wechat/tag_list','WechatController@tag_list'); //标签列表
 Route::get('/wechat/add_tag','WechatController@add_tag'); //添加标签
 Route::get('/wechat/do_add_tag','WechatController@do_add_tag'); //执行添加标签
