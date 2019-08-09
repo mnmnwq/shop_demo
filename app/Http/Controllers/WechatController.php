@@ -83,7 +83,9 @@ class WechatController extends Controller
     {
         $url = 'https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token='.$this->wechat->get_access_token();
         if(!is_array($request->all()['openid'])){
-            $openid_list = [$request->all()['openid']];
+            $openid_list = [
+                $request->all()['openid']
+            ];
         }else{
             $openid_list = $request->all()['openid'];
         }

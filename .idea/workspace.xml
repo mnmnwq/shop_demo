@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ac1ad87-c425-4264-b053-d741c4a0281e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Tools/Wechat.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Tools/Wechat.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Wechat/tagList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Wechat/tagList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,11 +27,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+            <state relative-caret-position="400">
+              <caret line="80" column="7" lean-forward="true" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="7" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
-                <element signature="e#489#1217#0#PHP" />
                 <element signature="e#1307#1583#0#PHP" />
                 <element signature="e#823#1157#0#PHP" />
                 <element signature="e#2110#2775#0#PHP" />
@@ -255,7 +251,7 @@
       <path value="$PROJECT_DIR$/vendor/easywechat-composer/easywechat-composer" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-4" />
     <option name="y" value="5" />
     <option name="width" value="1423" />
@@ -380,12 +376,12 @@
       <workItem from="1564706491899" duration="4158000" />
       <workItem from="1564735863613" duration="4498000" />
       <workItem from="1564808136068" duration="76936000" />
-      <workItem from="1565231427247" duration="13609000" />
+      <workItem from="1565231427247" duration="14856000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115391000" />
+    <option name="totallyTimeSpent" value="116638000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -400,7 +396,7 @@
     <frame x="-7" y="-7" width="1358" height="814" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16692308" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16692308" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -769,11 +765,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+        <state relative-caret-position="400">
+          <caret line="80" column="7" lean-forward="true" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="7" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
-            <element signature="e#489#1217#0#PHP" />
             <element signature="e#1307#1583#0#PHP" />
             <element signature="e#823#1157#0#PHP" />
             <element signature="e#2110#2775#0#PHP" />
