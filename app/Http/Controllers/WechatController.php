@@ -21,6 +21,22 @@ class WechatController extends Controller
     }
 
     /**
+     * 微信消息推送
+     */
+    public function event()
+    {
+        $data = file_get_contents("php://input");
+        //解析XML
+        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
+        $xml = (array)$xml; //转化成数组
+        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
+        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
+        \Log::Info(json_encode($xml));
+
+        //echo $_GET['echostr'];
+    }
+
+    /**
      * 修改标签
      */
     public function update_tag(Request $request)
@@ -190,18 +206,6 @@ class WechatController extends Controller
         dd($re);
     }
 
-
-
-    public function event()
-    {
-        $data = file_get_contents("php://input");
-        //解析XML
-        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
-        $xml = (array)$xml; //转化成数组
-        \Log::Info(json_encode($xml));
-
-        //echo $_GET['echostr'];
-    }
     /**
      * 模板列表
      */

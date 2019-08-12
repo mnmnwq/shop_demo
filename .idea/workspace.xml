@@ -4,8 +4,6 @@
     <list default="true" id="6ac1ad87-c425-4264-b053-d741c4a0281e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Wechat/tagList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Wechat/tagList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
+            <state relative-caret-position="300">
               <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
             </state>
           </provider>
@@ -30,32 +28,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state relative-caret-position="463">
+              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
-                <element signature="e#459#498#0#PHP" />
-                <element signature="e#675#714#0#PHP" />
-                <element signature="e#489#1217#0#PHP" />
-                <element signature="e#1307#1583#0#PHP" />
-                <element signature="e#1689#1843#0#PHP" />
-                <element signature="e#823#1157#0#PHP" />
-                <element signature="e#2110#2775#0#PHP" />
-                <element signature="e#1453#1820#0#PHP" />
-                <element signature="e#3588#3867#0#PHP" />
-                <element signature="e#1868#2116#0#PHP" />
-                <element signature="e#1025#1378#0#PHP" />
-                <element signature="e#1414#1682#0#PHP" />
-                <element signature="e#2114#2969#0#PHP" />
-                <element signature="e#2975#3882#0#PHP" />
-                <element signature="e#3888#4788#0#PHP" />
-                <element signature="e#4906#5644#0#PHP" />
-                <element signature="e#5650#5989#0#PHP" />
-                <element signature="e#6070#8017#0#PHP" />
-                <element signature="e#8023#8287#0#PHP" />
-                <element signature="e#8293#8627#0#PHP" />
-                <element signature="e#8860#10371#0#PHP" />
-                <element signature="e#10377#10940#0#PHP" />
+                <element signature="e#487#662#0#PHP" />
+                <element signature="e#729#1182#0#PHP" />
+                <element signature="e#1223#1480#0#PHP" />
+                <element signature="e#1554#2479#0#PHP" />
+                <element signature="e#2515#3265#0#PHP" />
+                <element signature="e#3333#3947#0#PHP" />
+                <element signature="e#4747#5412#0#PHP" />
+                <element signature="e#5446#5813#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -64,7 +48,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Wechat/pushTagMessage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="475">
               <caret line="19" column="46" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="46" />
             </state>
           </provider>
@@ -73,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Wechat/tagList.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
+            <state relative-caret-position="725">
               <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
             </state>
           </provider>
@@ -92,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/Wechat/addTag.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
-              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+              <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -100,14 +84,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Tools/Wechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
+            <state relative-caret-position="400">
               <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
               <folding>
                 <element signature="e#114#136#0#PHP" expanded="true" />
-                <element signature="e#737#2109#0#PHP" />
-                <element signature="e#2202#3190#0#PHP" />
-                <element signature="e#3292#4047#0#PHP" />
-                <element signature="e#4091#4927#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -277,11 +257,11 @@
       <path value="$PROJECT_DIR$/vendor/easywechat-composer/easywechat-composer" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-4" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-5" />
     <option name="y" value="5" />
-    <option name="width" value="1423" />
-    <option name="height" value="824" />
+    <option name="width" value="1424" />
+    <option name="height" value="825" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -407,12 +387,13 @@
       <workItem from="1564706491899" duration="4158000" />
       <workItem from="1564735863613" duration="4498000" />
       <workItem from="1564808136068" duration="76936000" />
-      <workItem from="1565231427247" duration="18030000" />
+      <workItem from="1565231427247" duration="19168000" />
+      <workItem from="1565572398881" duration="779000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119812000" />
+    <option name="totallyTimeSpent" value="121729000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -424,7 +405,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1358" height="814" extended-state="6" />
+    <frame x="-6" y="-6" width="1357" height="813" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.16692308" />
@@ -745,34 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Wechat/pushTagMessage.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="19" column="46" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Tools/Wechat.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-          <folding>
-            <element signature="e#114#136#0#PHP" expanded="true" />
-            <element signature="e#737#2109#0#PHP" />
-            <element signature="e#2202#3190#0#PHP" />
-            <element signature="e#3292#4047#0#PHP" />
-            <element signature="e#4091#4927#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Wechat/addTag.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/filesystems.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -782,14 +735,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
+        <state relative-caret-position="300">
           <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Wechat/pushTagMessage.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="19" column="46" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Wechat/tagList.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
+        <state relative-caret-position="725">
           <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
         </state>
       </provider>
@@ -801,34 +761,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Wechat/addTag.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Tools/Wechat.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+          <folding>
+            <element signature="e#114#136#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state relative-caret-position="463">
+          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
-            <element signature="e#459#498#0#PHP" />
-            <element signature="e#675#714#0#PHP" />
-            <element signature="e#489#1217#0#PHP" />
-            <element signature="e#1307#1583#0#PHP" />
-            <element signature="e#1689#1843#0#PHP" />
-            <element signature="e#823#1157#0#PHP" />
-            <element signature="e#2110#2775#0#PHP" />
-            <element signature="e#1453#1820#0#PHP" />
-            <element signature="e#3588#3867#0#PHP" />
-            <element signature="e#1868#2116#0#PHP" />
-            <element signature="e#1025#1378#0#PHP" />
-            <element signature="e#1414#1682#0#PHP" />
-            <element signature="e#2114#2969#0#PHP" />
-            <element signature="e#2975#3882#0#PHP" />
-            <element signature="e#3888#4788#0#PHP" />
-            <element signature="e#4906#5644#0#PHP" />
-            <element signature="e#5650#5989#0#PHP" />
-            <element signature="e#6070#8017#0#PHP" />
-            <element signature="e#8023#8287#0#PHP" />
-            <element signature="e#8293#8627#0#PHP" />
-            <element signature="e#8860#10371#0#PHP" />
-            <element signature="e#10377#10940#0#PHP" />
+            <element signature="e#487#662#0#PHP" />
+            <element signature="e#729#1182#0#PHP" />
+            <element signature="e#1223#1480#0#PHP" />
+            <element signature="e#1554#2479#0#PHP" />
+            <element signature="e#2515#3265#0#PHP" />
+            <element signature="e#3333#3947#0#PHP" />
+            <element signature="e#4747#5412#0#PHP" />
+            <element signature="e#5446#5813#0#PHP" />
           </folding>
         </state>
       </provider>
