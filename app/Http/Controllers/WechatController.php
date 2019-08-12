@@ -469,7 +469,7 @@ class WechatController extends Controller
         $signature = $_GET['signature'];
         $nonce = $_GET['nonce'];
         $timestamp = $_GET['timestamp'];
-
+        \Log::Info(json_encode($_GET));
         //把这三个参数存到一个数组里面
         $tmpArr = [$timestamp,$nonce,'token'];
         //进行字典排序
