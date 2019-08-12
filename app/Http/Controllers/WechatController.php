@@ -25,6 +25,7 @@ class WechatController extends Controller
      */
     public function event()
     {
+        $this->checkSignature();
         $data = file_get_contents("php://input");
         //解析XML
         $xml = simplexml_load_string($data,'SimpleXMLElement', LIBXML_NOCDATA);        //将 xml字符串 转换成对象
@@ -480,6 +481,8 @@ class WechatController extends Controller
         //sha1加密，调用sha1函数
         $tmpStr = sha1($tmpStr);
         //判断加密后的字符串是否和signature相等
+        \Log::Info($tmpStr);
+        \Log::Info($signature);
         if($tmpStr == $signature)
         {
             echo $_GET['echostr'];
