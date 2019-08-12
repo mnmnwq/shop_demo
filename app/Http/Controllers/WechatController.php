@@ -485,7 +485,7 @@ class WechatController extends Controller
         \Log::Info($signature);
         if($tmpStr == $signature)
         {
-            echo $_GET['echostr'];
+            //echo $_GET['echostr'];
         }
 
     }
