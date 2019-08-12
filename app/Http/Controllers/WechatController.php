@@ -33,7 +33,8 @@ class WechatController extends Controller
         file_put_contents(storage_path('logs/wx_event.log'),$log_str,FILE_APPEND);
         \Log::Info(json_encode($xml));
         $message = '你好!';
-        $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA['.$message.']]></MsgType><Content><![CDATA[你好]]></Content></xml>';
+        $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[你好]]></Content></xml>';
+        dd($xml_str);
         echo $xml;
         //echo $_GET['echostr'];
     }

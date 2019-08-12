@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ac1ad87-c425-4264-b053-d741c4a0281e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WechatController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+            <state relative-caret-position="425">
+              <caret line="35" column="212" selection-start-line="35" selection-start-column="212" selection-end-line="35" selection-end-column="212" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
                 <element signature="e#487#662#0#PHP" />
@@ -387,12 +388,12 @@
       <workItem from="1564735863613" duration="4498000" />
       <workItem from="1564808136068" duration="76936000" />
       <workItem from="1565231427247" duration="19168000" />
-      <workItem from="1565572398881" duration="2448000" />
+      <workItem from="1565572398881" duration="4022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123398000" />
+    <option name="totallyTimeSpent" value="124972000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -407,7 +408,7 @@
     <frame x="-6" y="-6" width="1357" height="813" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.16692308" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16679478" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -779,8 +780,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+        <state relative-caret-position="425">
+          <caret line="35" column="212" selection-start-line="35" selection-start-column="212" selection-end-line="35" selection-end-column="212" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
             <element signature="e#487#662#0#PHP" />
