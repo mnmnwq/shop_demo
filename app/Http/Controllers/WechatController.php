@@ -34,7 +34,7 @@ class WechatController extends Controller
         \Log::Info(json_encode($xml));
         $message = '你好!';
         $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[你好]]></Content></xml>';
-        echo $xml;
+        echo $xml_str;
         //echo $_GET['echostr'];
     }
 
