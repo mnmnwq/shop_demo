@@ -25,7 +25,7 @@ class WechatController extends Controller
      */
     public function event()
     {
-        $this->checkSignature();
+        //$this->checkSignature();
         $data = file_get_contents("php://input");
         //解析XML
         $xml = simplexml_load_string($data,'SimpleXMLElement', LIBXML_NOCDATA);        //将 xml字符串 转换成对象
@@ -34,7 +34,7 @@ class WechatController extends Controller
         file_put_contents(storage_path('logs/wx_event.log'),$log_str,FILE_APPEND);
         \Log::Info(json_encode($xml));
         $message = '你好!';
-        $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[你好]]></Content></xml>';
+        $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
         echo $xml_str;
         //echo $_GET['echostr'];
     }
@@ -469,7 +469,6 @@ class WechatController extends Controller
         $signature = $_GET['signature'];
         $nonce = $_GET['nonce'];
         $timestamp = $_GET['timestamp'];
-        \Log::Info(json_encode($_GET));
         //把这三个参数存到一个数组里面
         $tmpArr = [$timestamp,$nonce,'token'];
         //进行字典排序
@@ -481,8 +480,7 @@ class WechatController extends Controller
         //sha1加密，调用sha1函数
         $tmpStr = sha1($tmpStr);
         //判断加密后的字符串是否和signature相等
-        \Log::Info($tmpStr);
-        \Log::Info($signature);
+
         if($tmpStr == $signature)
         {
             //echo $_GET['echostr'];
