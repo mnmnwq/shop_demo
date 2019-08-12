@@ -27,12 +27,14 @@ class WechatController extends Controller
     {
         $data = file_get_contents("php://input");
         //解析XML
-        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
+        $xml = simplexml_load_string($data,'SimpleXMLElement', LIBXML_NOCDATA);        //将 xml字符串 转换成对象
         $xml = (array)$xml; //转化成数组
         $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         file_put_contents(storage_path('logs/wx_event.log'),$log_str,FILE_APPEND);
         \Log::Info(json_encode($xml));
-
+        $message = '你好!';
+        $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA['.$message.']]></MsgType><Content><![CDATA[你好]]></Content></xml>';
+        echo $xml;
         //echo $_GET['echostr'];
     }
 
