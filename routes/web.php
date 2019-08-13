@@ -14,10 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/menu/menu_list','MenuController@menu_list');
+Route::get('/menu/del_menu','MenuController@del_menu');  //完全删除菜单
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/agent/user_list','AgentController@user_list');
+Route::get('/agent/create_qrcode','AgentController@create_qrcode');
 
 
 
