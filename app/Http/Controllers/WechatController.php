@@ -35,7 +35,7 @@ class WechatController extends Controller
         file_put_contents(storage_path('logs/wx_event.log'),$log_str,FILE_APPEND);
         if($xml['MsgType'] == 'event'){
             if($xml['Event'] == 'subscribe'){ //关注
-                if(isset($xml['EventKey'])){
+                if(!empty($xml['EventKey'])){
                     //拉新操作
                     $agent_code = explode('_',$xml['EventKey'])[1];
                     $agent_info = DB::connection('mysql_cart')->table('user_agent')->where(['uid'=>$agent_code,'openid'=>$xml['FromUserName']])->first();
@@ -50,6 +50,9 @@ class WechatController extends Controller
                 $message = '你好!';
                 $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
                 echo $xml_str;
+            }elseif($xml['Event'] == 'location_select'){
+                $message = '';
+                $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
             }
         }elseif($xml['MsgType'] == 'text'){
             $message = '你好!';

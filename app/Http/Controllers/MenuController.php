@@ -94,11 +94,19 @@ class MenuController extends Controller
             $sub_button = [];
             foreach($menu_list as $k=>$vo){
                 if($vo->menu_type == 1){ //一级菜单
-                    $data['button'][] = [
-                        'type'=>$vo->event_type,
-                        'name'=>$vo->menu_name,
-                        'key'=>$vo->menu_tag
-                    ];
+                    if($vo->event_type == 'view'){
+                        $data['button'][] = [
+                            'type'=>$vo->event_type,
+                            'name'=>$vo->menu_name,
+                            'url'=>$vo->menu_tag
+                        ];
+                    }else{
+                        $data['button'][] = [
+                            'type'=>$vo->event_type,
+                            'name'=>$vo->menu_name,
+                            'key'=>$vo->menu_tag
+                        ];
+                    }
                 }
                 if($vo->menu_type == 2){ //二级菜单
                     //echo "<pre>";print_r($vo);
