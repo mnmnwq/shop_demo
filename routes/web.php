@@ -17,6 +17,9 @@ Route::get('/', function () {
 ////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/menu/menu_list','MenuController@menu_list');
 Route::get('/menu/del_menu','MenuController@del_menu');  //完全删除菜单
+Route::post('/menu/do_add_menu','MenuController@do_add_menu');  //增加菜单
+Route::get('/menu/display_menu','MenuController@display_menu');  //菜单查询接口
+Route::get('/menu/reload_menu','MenuController@reload_menu');  //刷新菜单接口
 
 
 

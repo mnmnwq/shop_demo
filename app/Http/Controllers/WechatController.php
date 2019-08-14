@@ -30,6 +30,7 @@ class WechatController extends Controller
         //解析XML
         $xml = simplexml_load_string($data,'SimpleXMLElement', LIBXML_NOCDATA);        //将 xml字符串 转换成对象
         $xml = (array)$xml; //转化成数组
+        \Log::Info(json_encode($xml));  //输出收到的信息
         $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         file_put_contents(storage_path('logs/wx_event.log'),$log_str,FILE_APPEND);
         if($xml['MsgType'] == 'event'){
