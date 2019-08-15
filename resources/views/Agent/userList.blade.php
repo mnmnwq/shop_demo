@@ -48,15 +48,14 @@
         });
         wx.ready(function(){
             $('.share_btn').click(function(){
-                wx.updateAppMessageShareData({
-                    title: '', // 分享标题
-                    desc: '', // 分享描述
-                    link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                    imgUrl: '', // 分享图标
-                    success: function () {
-                        // 设置成功
-                    }
-                })
+                wx.openLocation({
+                    latitude: 0, // 纬度，浮点数，范围为90 ~ -90
+                    longitude: 0, // 经度，浮点数，范围为180 ~ -180。
+                    name: '', // 位置名
+                    address: '', // 地址详情说明
+                    scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
+                    infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+                });
             });
         });
     });
