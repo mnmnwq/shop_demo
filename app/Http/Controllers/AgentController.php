@@ -15,13 +15,64 @@ class AgentController extends Controller
     {
         $this->wechat = $wechat;
     }
+
+    public function signature(Request $request)
+    {
+        //随机字符串
+        $str = time() . rand(111111,999999). 'suibian';
+        $nonce_str = substr( md5($str),5,8 );
+        $timestamp = time(); //当前时间戳
+        $url = 'http://'.$request['url'];  //需要前端传过来
+
+        $data = [
+            'jsapi_ticket'  => $this->wechat->jsapi_ticket(),
+            'noncestr'      => $nonce_str,
+            'timestamp'     => $timestamp,
+            'url'           => $url
+        ];
+
+        $param = "";
+        foreach($data as $k=>$v){
+            $param .= $k.'='.$v.'&';
+        }
+        $p = rtrim($param,'&');
+        //计算签名
+        $signature = sha1($p);
+        $response['nonce_str'] = $nonce_str;
+        $response['timestamp'] = $timestamp;
+        $response['signature'] = $signature;
+        $response['url'] = $url;
+        echo json_encode($response);
+    }
+    
     /**
      * 用户列表
      */
     public function user_list()
     {
         $user_info = DB::connection('mysql_cart')->table('user')->get();
-        return view('Agent.userList',['user_info'=>$user_info]);
+        //计算签名
+        $jsconfig = [
+            'appid' => env('WECHAT_APPID'),        //APPID
+            'timestamp' => time(),
+            'noncestr'    => time() . rand(111111,999999). 'suibian',
+        ];
+        $sign = $this->wxJsConfigSign($jsconfig);
+        $jsconfig['sign'] = $sign;
+        $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        return view('Agent.userList',['user_info'=>$user_info,'url'=>$url,'jsconfig'=>$jsconfig]);
+    }
+
+    /**
+     * 计算JSSDK sign
+     */
+    public function wxJsConfigSign($param)
+    {
+        $current_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];     //当前调用 jsapi的 url
+        $ticket = $this->wechat->jsapi_ticket();
+        $str =  'jsapi_ticket='.$ticket.'&noncestr='.$param['noncestr']. '&timestamp='. $param['timestamp']. '&url='.$current_url;
+        $signature=sha1($str);
+        return $signature;
     }
 
     /**
