@@ -6,6 +6,7 @@
 </head>
 <body>
 <center>
+    <button type="button" id="get_location">获取地理位置信息</button>
 
    <table border="1">
        <tr>
@@ -48,6 +49,17 @@
         });
         wx.ready(function(){
             $('.share_btn').click(function(){
+                wx.updateAppMessageShareData({
+                    title: '', // 分享标题
+                    desc: '', // 分享描述
+                    link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: '', // 分享图标
+                    success: function () {
+                        // 设置成功
+                    }
+                });
+            });
+            $("#get_location").click(function(){
                 wx.getLocation({
                     type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
                     success: function (res) {
