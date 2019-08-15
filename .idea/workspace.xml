@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ac1ad87-c425-4264-b053-d741c4a0281e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Tools/Wechat.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Tools/Wechat.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Agent/userList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Agent/userList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/Agent/userList.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+            <state relative-caret-position="276">
+              <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -377,12 +374,12 @@
       <workItem from="1564735863613" duration="4498000" />
       <workItem from="1564808136068" duration="76936000" />
       <workItem from="1565231427247" duration="19168000" />
-      <workItem from="1565572398881" duration="62034000" />
+      <workItem from="1565572398881" duration="62371000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182984000" />
+    <option name="totallyTimeSpent" value="183321000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -395,7 +392,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1357" height="813" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.1652575" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -410,7 +406,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3184282" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3184282" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -770,8 +766,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Agent/userList.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+        <state relative-caret-position="276">
+          <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
         </state>
       </provider>
     </entry>
