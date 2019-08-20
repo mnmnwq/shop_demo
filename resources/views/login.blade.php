@@ -11,6 +11,7 @@
 		@csrf
 		<input type="text" name="name">
 		<input type="password" name="password">
+		<a href="{{url('/liuyan/wechat_login')}}">微信登陆</a>
 		<input type="submit" value="提交">
 	</form>
 </center>

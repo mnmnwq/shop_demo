@@ -108,10 +108,15 @@ Route::get('/admin','admin\indexController@index');
 Route::get('/student/login','StudentController@login');
 Route::post('/student/do_login','StudentController@do_login');
 
-Route::get('/liuyan/index','LiuYanController@index');
+
 Route::get('/liuyan/do_del','LiuYanController@do_del'); //删除留言
 
 Route::post('liuyan_info','LiuYanController@info');
+
+Route::get('liuyan/wechat_login','LiuYanController@wechat_login');
+Route::get('liuyan/wechat_code','LiuYanController@wechat_code');
+
+
 
 //浏览学生信息
 Route::get('/student/index', 'StudentController@index');
@@ -125,12 +130,18 @@ Route::post('/student/do_update','StudentController@do_update');
 //删除
 Route::get('/student/delete','StudentController@delete');
 
+Route::get('/logout','LoginController@logout');
+
 
 
 //调用中间件
 Route::group(['middleware' => ['login']], function () {
     //添加学生信息
-    Route::get('/student/add','StudentController@add');     
+    Route::get('/student/add','StudentController@add');
+
+    Route::get('/liuyan/index','LiuYanController@index'); //留言板主页
+    Route::get('/liuyan/send','LiuYanController@send');
+    Route::post('/liuyan/do_send','LiuYanController@do_send');
 });
 
 
