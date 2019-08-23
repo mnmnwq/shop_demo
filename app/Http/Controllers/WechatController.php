@@ -85,6 +85,14 @@ class WechatController extends Controller
                     echo $xml_str;
                     die();
                 }
+                foreach($price_arr['result'] as $v){
+                    if($city == $v['city']){
+                        $message = $v['92h']."\n".$v['95h']."\n".$v['98h']."\n".$v['0h'];
+                        $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+                        echo $xml_str;
+                        die();
+                    }
+                }
             }
             /*$message = '你好!';
             $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
