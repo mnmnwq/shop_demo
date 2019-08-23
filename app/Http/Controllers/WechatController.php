@@ -14,10 +14,13 @@ class WechatController extends Controller
 {
     public $request;
     public $wechat;
+    public $redis;
     public function __construct(Request $request,Wechat $wechat)
     {
         $this->request = $request;
         $this->wechat = $wechat;
+        $this->redis = new \Redis();
+        $this->redis->connect('127.0.0.1','6379');
     }
 
     /**
@@ -87,7 +90,23 @@ class WechatController extends Controller
                 }
                 foreach($price_arr['result'] as $v){
                     if($city == $v['city']){
-                        $message = $city.'目前油价：'."\n".'92h：'.$v['92h']."\n".'95h：'.$v['95h']."\n".'98h：'.$v['98h']."\n".'0h：'.$v['0h'];
+                        $this->redis->incr($city);
+                        $find_num = $this->redis->get($city);
+                        //缓存操作
+                        if($find_num > 10){
+                            if($this->redis->exists($city.'信息')){
+                                //存在
+                                $v_info = $this->redis->get($city.'信息');
+                                $v = json_decode($v_info,1);
+                            }else{
+                                $this->redis->set($city.'信息',json_encode($v));
+                            }
+                        }
+                        $message = $city.'目前油价：'."\n";
+                        foreach($v as $key => $vv){
+                            $message .= $key.'：'.$vv;
+                        }
+                        //$message = $city.'目前油价：'."\n".'92h：'.$v['92h']."\n".'95h：'.$v['95h']."\n".'98h：'.$v['98h']."\n".'0h：'.$v['0h'];
                         $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
                         echo $xml_str;
                         die();

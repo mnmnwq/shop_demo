@@ -48,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="89" column="131" selection-start-line="89" selection-start-column="131" selection-end-line="89" selection-end-column="131" />
+            <state relative-caret-position="108">
+              <caret line="94" column="30" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
                 <element signature="e#1052#3308#0#PHP" />
@@ -421,12 +421,12 @@
       <workItem from="1565572398881" duration="65491000" />
       <workItem from="1565916835136" duration="10429000" />
       <workItem from="1566179051159" duration="32469000" />
-      <workItem from="1566540295613" duration="7415000" />
+      <workItem from="1566540295613" duration="8065000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236754000" />
+    <option name="totallyTimeSpent" value="237404000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -439,6 +439,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1358" height="814" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.15230769" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -453,7 +454,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32994923" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3888131" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3888131" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.3296501" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -821,8 +822,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WechatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="89" column="131" selection-start-line="89" selection-start-column="131" selection-end-line="89" selection-end-column="131" />
+        <state relative-caret-position="108">
+          <caret line="94" column="30" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
             <element signature="e#1052#3308#0#PHP" />
