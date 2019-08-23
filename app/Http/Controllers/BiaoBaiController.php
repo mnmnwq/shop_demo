@@ -16,8 +16,8 @@ class BiaoBaiController extends Controller
     }
     public function index(Request $request)
     {
-        $api_info = file_get_contents(env('APP_URL').'/price/api');
-        dd($api_info);
+        $api_info = file_get_contents('http://shopdemo.18022480300.com/price/api');
+        dd(json_decode($api_info,1));
         /*$uid = $request->session()->get('uid');
         echo $uid.'<br/>';*/
         $openid_list = $this->wechat->app->user->list($nextOpenId = null);
