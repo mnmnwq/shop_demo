@@ -74,7 +74,7 @@ class WechatController extends Controller
                 //查询油价
                 $city = substr($xml['Content'],0,-6);
                 $price_info = file_get_contents('http://shopdemo.18022480300.com/price/api');
-                $price_arr = \GuzzleHttp\json_decode($price_info,1);
+                $price_arr = json_decode($price_info,1);
                 $support_arr = [];
                 foreach($price_arr as $v){
                     $support_arr[] = $v['city'];
