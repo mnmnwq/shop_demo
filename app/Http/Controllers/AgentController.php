@@ -50,6 +50,7 @@ class AgentController extends Controller
      */
     public function user_list()
     {
+        //$user = $this->wechat->app->user->get('otAUQ1TooUpCtoegtQ_31No8MuCw');
         $user_info = DB::connection('mysql_cart')->table('user')->get();
         //计算签名
         $jsconfig = [
@@ -57,6 +58,7 @@ class AgentController extends Controller
             'timestamp' => time(),
             'noncestr'    => time() . rand(111111,999999). 'suibian',
         ];
+
         $sign = $this->wxJsConfigSign($jsconfig);
         $jsconfig['sign'] = $sign;
         $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -70,7 +72,10 @@ class AgentController extends Controller
     {
         $current_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];     //当前调用 jsapi的 url
         $ticket = $this->wechat->jsapi_ticket();
-        $str =  'jsapi_ticket='.$ticket.'&noncestr='.$param['noncestr']. '&timestamp='. $param['timestamp']. '&url='.$current_url;
+        //签名算法
+        //需要sha1() 加密   string  'jsapi_ticket=value&noncestr=value&timestamp=value&url=value'
+        $str =  'jsapi_ticket='.$ticket.'&noncestr='.$param['noncestr']. '&timestamp='
+            . $param['timestamp']. '&url='.$current_url;
         $signature=sha1($str);
         return $signature;
     }

@@ -11,10 +11,12 @@ use Illuminate\Http\Request;
 class Wechat{
     public  $request;
     public  $client;
+    public  $app;
     public function __construct(Request $request,Client $client)
     {
         $this->request = $request;
         $this->client = $client;
+        $this->app = $app = app('wechat.official_account');
     }
 
     /**

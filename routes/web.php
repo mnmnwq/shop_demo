@@ -31,10 +31,12 @@ Route::get('/agent/create_qrcode','AgentController@create_qrcode');
 Route::post('/agent/signature','AgentController@signature');  //分享签名
 
 
-
-
-
 /// ///////////////////////////////////////////////////////////////////////////////////////
+/// 月考表白
+Route::get('/biaobai/index','BiaoBaiController@index');
+Route::get('/biaobai/send','BiaoBaiController@send');
+Route::post('/biaobai/do_send','BiaoBaiController@do_send');
+/// //////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -54,8 +56,9 @@ Route::get('/wechat/del_user_tag','WechatController@del_user_tag'); //删除用�
 Route::get('/wechat/push_tag_message','WechatController@push_tag_message'); //根据标签推送消息
 Route::post('/wechat/do_push_tag_message','WechatController@do_push_tag_message'); //执行根据标签推送消息
 
-Route::get('/wechat/code','WechatController@code');
-Route::get('/wechat/login','WechatController@login');
+
+Route::get('/wechat/code','LoginController@wechat_code');
+Route::get('/wechat/login','LoginController@wechat_login');
 
 Route::get('/wechat/template_list','WechatController@template_list');
 Route::get('/wechat/del_template','WechatController@del_template');
