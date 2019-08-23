@@ -102,11 +102,8 @@ class WechatController extends Controller
                                 $this->redis->set($city.'信息',json_encode($v));
                             }
                         }
-                        $message = $city.'目前油价：'."\n";
-                        foreach($v as $key => $vv){
-                            $message .= $key.'：'.$vv;
-                        }
-                        //$message = $city.'目前油价：'."\n".'92h：'.$v['92h']."\n".'95h：'.$v['95h']."\n".'98h：'.$v['98h']."\n".'0h：'.$v['0h'];
+                        //$message = $city.'目前油价：'."\n";
+                        $message = $city.'目前油价：'."\n".'92h：'.$v['92h']."\n".'95h：'.$v['95h']."\n".'98h：'.$v['98h']."\n".'0h：'.$v['0h'];
                         $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
                         echo $xml_str;
                         die();
