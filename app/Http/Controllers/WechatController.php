@@ -87,7 +87,7 @@ class WechatController extends Controller
                 }
                 foreach($price_arr['result'] as $v){
                     if($city == $v['city']){
-                        $message = $v['92h']."\n".$v['95h']."\n".$v['98h']."\n".$v['0h'];
+                        $message = '北京目前油价：'."\n".'92h：'.$v['92h']."\n".'95h：'.$v['95h']."\n".'98h：'.$v['98h']."\n".'0h：'.$v['0h'];
                         $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
                         echo $xml_str;
                         die();
