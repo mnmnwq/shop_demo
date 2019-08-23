@@ -30,6 +30,9 @@ Route::get('/agent/user_list','AgentController@user_list');
 Route::get('/agent/create_qrcode','AgentController@create_qrcode');
 Route::post('/agent/signature','AgentController@signature');  //分享签名
 
+///////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/price/api','PriceController@price_api');
+
 
 /// ///////////////////////////////////////////////////////////////////////////////////////
 /// 月考表白
