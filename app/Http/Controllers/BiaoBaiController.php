@@ -41,7 +41,7 @@ class BiaoBaiController extends Controller
             'template_id' => 'hy-ju5jnMvV0PWVvJ4LMlg1ky_WQ91DtOrNYRQpfoq0',
             'url' => env('APP_URL').'/biaobai/index',
             'data' => [
-                'first' => $user['nickname'],
+                'first' => $req['user_type'] == 2?'匿名用户':$user['nickname'],
                 'keyword1' => $req['content'],
             ],
         ]);
