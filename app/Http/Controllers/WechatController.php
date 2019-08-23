@@ -61,7 +61,7 @@ class WechatController extends Controller
                     $biaobai_info = DB::connection('mysql_cart')->table('biaobai')->where(['from_user'=>$xml['FromUserName']])->get()->toArray();
                     $message = '';
                     foreach($biaobai_info as $v){
-                        $message .= $v->content.'\n';
+                        $message .= $v->content."\n";
                     }
                     $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
                     echo $xml_str;
