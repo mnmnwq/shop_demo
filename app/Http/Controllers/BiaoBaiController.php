@@ -26,7 +26,7 @@ class BiaoBaiController extends Controller
 
     public function send(Request $request)
     {
-        return view('biaobai/send',['openid'=>$request->all()['openid']]);
+        return view('BiaoBai.send',['openid'=>$request->all()['openid']]);
     }
 
     public function do_send(Request $request)
