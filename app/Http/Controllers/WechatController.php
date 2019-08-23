@@ -58,7 +58,7 @@ class WechatController extends Controller
                 echo $xml_str;
             }elseif($xml['Event'] == 'CLICK'){
                 if($xml['EventKey'] == 'my_biaobai'){
-                    $biaobai_info = DB::connetion('mysql_cart')->table('biaobai')->where(['from_user'=>$xml['FromUserName']])->get()->toArray();
+                    $biaobai_info = DB::connection('mysql_cart')->table('biaobai')->where(['from_user'=>$xml['FromUserName']])->get()->toArray();
                     $message = '';
                     foreach($biaobai_info as $v){
                         $message .= $v->content.'\n';
