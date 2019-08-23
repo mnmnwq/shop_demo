@@ -69,9 +69,26 @@ class WechatController extends Controller
 
             }
         }elseif($xml['MsgType'] == 'text'){
-            $message = '你好!';
+            $preg_result = preg_match('/.*?油价/',$xml['Content']);
+            if($preg_result){
+                //查询油价
+                $city = substr($xml['Content'],0,-6);
+                $price_info = file_get_contents('http://shopdemo.18022480300.com/price/api');
+                $price_arr = \GuzzleHttp\json_decode($price_info,1);
+                $support_arr = [];
+                foreach($price_arr as $v){
+                    $support_arr[] = $v['city'];
+                }
+                if(!in_array($city,$support_arr)){
+                    $message = '查询城市不支持！';
+                    $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+                    echo $xml_str;
+                    die();
+                }
+            }
+            /*$message = '你好!';
             $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
-            echo $xml_str;
+            echo $xml_str;*/
         }
         //echo $_GET['echostr'];  //第一次访问
     }
