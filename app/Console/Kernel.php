@@ -19,17 +19,6 @@ class Kernel extends ConsoleKernel
         //
     ];
 
-    public $redis;
-    public $app ;
-
-    public function __construct(Application $app, Dispatcher $events)
-    {
-        parent::__construct($app, $events);
-        $this->redis = new \Redis();
-        $this->redis->connect('127.0.0.1','6379');
-        $this->app = app('wechat.official_account');
-    }
-
     /**
      * Define the application's command schedule.
      *
@@ -44,20 +33,24 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->call(function () {
-            \Log::Info('22222222222222');
+            $redis = new \Redis();
+            $redis->connect('127.0.0.1','6379');
+            $app = app('wechat.official_account');
+            \Log::Info('22222222222222222');
+            return;
             //业务逻辑
             $price_info = file_get_contents('http://shopdemo.18022480300.com/price/api');
             $price_arr = json_decode($price_info,1);
             foreach($price_arr['result'] as $v){
-                if($this->redis->exists($v['city'].'信息')){
-                    $redis_info = json_decode($this->redis->get($v['city'].'信息'),1);
+                if($redis->exists($v['city'].'信息')){
+                    $redis_info = json_decode($redis->get($v['city'].'信息'),1);
                     foreach ($v as $k=>$vv){
                         if($vv != $redis_info[$k]){
                             //推送模板消息
-                            $openid_info = $this->app->user->list($nextOpenId = null);
+                            $openid_info = $app->user->list($nextOpenId = null);
                             $openid_list = $openid_info['data'];
                             foreach ($openid_list['openid'] as $vo){
-                                $this->app->template_message->send([
+                                $app->template_message->send([
                                     'touser' => $vo,
                                     'template_id' => 'hy-ju5jnMvV0PWVvJ4LMlg1ky_WQ91DtOrNYRQpfoq0',
                                     'url' => 'http://shopdemo.18022480300.com',
