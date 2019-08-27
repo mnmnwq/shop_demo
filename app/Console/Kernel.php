@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
             $price_arr = json_decode($price_info,1);
             foreach($price_arr['result'] as $v){
                 if($redis->exists($v['city'].'信息')){
-                    $redis_info = json_decode($this->redis->get($v['city'].'信息'),1);
+                    $redis_info = json_decode($redis->get($v['city'].'信息'),1);
                     foreach ($v as $k=>$vv){
                         if($vv != $redis_info[$k]){
                             //推送模板消息
