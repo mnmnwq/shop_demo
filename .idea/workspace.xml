@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ac1ad87-c425-4264-b053-d741c4a0281e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-    </list>
+    <list default="true" id="6ac1ad87-c425-4264-b053-d741c4a0281e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+            <state relative-caret-position="500">
+              <caret line="61" column="79" lean-forward="true" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
               <folding>
                 <element signature="e#31#74#0#PHP" expanded="true" />
               </folding>
@@ -417,12 +415,12 @@
       <workItem from="1566179051159" duration="32469000" />
       <workItem from="1566540295613" duration="9124000" />
       <workItem from="1566779894612" duration="7913000" />
-      <workItem from="1566867894772" duration="1172000" />
+      <workItem from="1566867894772" duration="1418000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247548000" />
+    <option name="totallyTimeSpent" value="247794000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -842,8 +840,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+        <state relative-caret-position="500">
+          <caret line="61" column="79" lean-forward="true" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
           <folding>
             <element signature="e#31#74#0#PHP" expanded="true" />
           </folding>

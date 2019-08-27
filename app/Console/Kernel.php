@@ -44,6 +44,7 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->call(function () {
+            \Log::Info('22222222222222');
             //业务逻辑
             $price_info = file_get_contents('http://shopdemo.18022480300.com/price/api');
             $price_arr = json_decode($price_info,1);
