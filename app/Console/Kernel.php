@@ -23,14 +23,15 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+
+
     protected function schedule(Schedule $schedule)
     {
-        $redis = new \Redis();
-        $redis->connect('127.0.0.1','6379');
-        $app = app('wechat.official_account');
-        $schedule->call(function ($app,$redis) {
-            \Log::Info('22222222222222222222222222222222');
-            return ;
+
+        $schedule->call(function () {
+            $redis = new \Redis();
+            $redis->connect('127.0.0.1','6379');
+            $app = app('wechat.official_account');
             //业务逻辑
             $price_info = file_get_contents('http://shopdemo.18022480300.com/price/api');
             $price_arr = json_decode($price_info,1);
