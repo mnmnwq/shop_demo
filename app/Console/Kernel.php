@@ -27,7 +27,8 @@ class Kernel extends ConsoleKernel
     {
         $redis = new \Redis();
         $redis->connect('127.0.0.1','6379');
-        $schedule->call(function (Wechat $wechat,$redis) {
+        $wechat = new Wechat();
+        $schedule->call(function ($wechat,$redis) {
             \Log::Info('22222222222222222222222222222222');
             return ;
             //业务逻辑
