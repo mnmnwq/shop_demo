@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
     {
         $redis = new \Redis();
         $redis->connect('127.0.0.1','6379');
-        $wechat = new Wechat();
-        $schedule->call(function ($wechat,$redis) {
+        $app = app('wechat.official_account');
+        $schedule->call(function ($app,$redis) {
             \Log::Info('22222222222222222222222222222222');
             return ;
             //业务逻辑
@@ -40,10 +40,10 @@ class Kernel extends ConsoleKernel
                     foreach ($v as $k=>$vv){
                         if($vv != $redis_info[$k]){
                             //推送模板消息
-                            $openid_info = $wechat->app->user->list($nextOpenId = null);
+                            $openid_info = $app->user->list($nextOpenId = null);
                             $openid_list = $openid_info['data'];
                             foreach ($openid_list['openid'] as $vo){
-                                $wechat->app->template_message->send([
+                                $app->template_message->send([
                                     'touser' => $vo,
                                     'template_id' => 'hy-ju5jnMvV0PWVvJ4LMlg1ky_WQ91DtOrNYRQpfoq0',
                                     'url' => 'http://shopdemo.18022480300.com',
