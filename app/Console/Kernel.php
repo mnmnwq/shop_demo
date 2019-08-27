@@ -32,6 +32,8 @@ class Kernel extends ConsoleKernel
             $redis = new \Redis();
             $redis->connect('127.0.0.1','6379');
             $app = app('wechat.official_account');
+            \Log::Info('22222222222222222222222222');
+            return ;
             //业务逻辑
             $price_info = file_get_contents('http://shopdemo.18022480300.com/price/api');
             $price_arr = json_decode($price_info,1);
