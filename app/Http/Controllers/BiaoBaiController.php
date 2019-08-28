@@ -27,9 +27,9 @@ class BiaoBaiController extends Controller
         return view('BiaoBai.index',['info'=>$openid_list['data']['openid']]);
     }
 
-    public function notify_url()
+    public function notify_url(Request $request)
     {
-        
+        dd($request->all());
     }
 
     public function send(Request $request)
