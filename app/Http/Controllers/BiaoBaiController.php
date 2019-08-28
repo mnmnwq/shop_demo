@@ -19,39 +19,17 @@ class BiaoBaiController extends Controller
     }
     public function index(Request $request)
     {
-        $price_info = file_get_contents('http://shopdemo.18022480300.com/price/api');
-        $price_arr = json_decode($price_info,1);
-        foreach($price_arr['result'] as $v){
-            if($this->redis->exists($v['city'].'信息')){
-                $redis_info = json_decode($this->redis->get($v['city'].'信息'),1);
-                foreach ($v as $k=>$vv){
-                    //echo $vv.'++++++++'.$redis_info[$k]."<br>";
-                    if($vv != $redis_info[$k]){
-                        //推送模板消息
-                        $openid_info = $this->wechat->app->user->list($nextOpenId = null);
-                        $openid_list = $openid_info['data'];
-                        foreach ($openid_list['openid'] as $vo){
-                            $this->wechat->app->template_message->send([
-                                'touser' => $vo,
-                                'template_id' => 'hy-ju5jnMvV0PWVvJ4LMlg1ky_WQ91DtOrNYRQpfoq0',
-                                'url' => 'http://shopdemo.18022480300.com',
-                                'data' => [
-                                    'first' => $v['city'],
-                                    'keyword1' => '你好',
-                                ],
-                            ]);
-                        }
-                    }
-                }
-            }
-        }
-        dd();
         /*$uid = $request->session()->get('uid');
         echo $uid.'<br/>';*/
         $openid_list = $this->wechat->app->user->list($nextOpenId = null);
 //        $openid_info  = $openid_list['data']['openid'];
 //        dd($openid_info);
         return view('BiaoBai.index',['info'=>$openid_list['data']['openid']]);
+    }
+
+    public function notify_url()
+    {
+        
     }
 
     public function send(Request $request)

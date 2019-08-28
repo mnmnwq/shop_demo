@@ -39,6 +39,7 @@ Route::get('/price/api','PriceController@price_api');
 Route::get('/biaobai/index','BiaoBaiController@index');
 Route::get('/biaobai/send','BiaoBaiController@send');
 Route::post('/biaobai/do_send','BiaoBaiController@do_send');
+Route::get('/biaobai/notify_url','BiaoBaiController@notify_url');
 /// //////////////////////////////////////////////////////////////////////////////////////
 
 
