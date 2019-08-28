@@ -30,7 +30,9 @@ class BiaoBaiController extends Controller
 
     public function notify_url(Request $request)
     {
-        dd($request->all());
+        //Request没办法获取jsonp传过来的数据只能用$_GET
+        $data = ['aa'=>1,'bb'=>2];
+        echo $_GET['callback'].'('.json_encode($data).')';
     }
 
     public function send(Request $request)
