@@ -15,10 +15,11 @@ class BiaoBaiController extends Controller
     {
         $this->wechat = $wechat;
         $this->redis = new \Redis();
-        $this->redis->connect('39.105.95.102','6379');
+        $this->redis->connect('127.0.0.1','6379');
     }
     public function index(Request $request)
     {
+        //dd(1111);
         /*$uid = $request->session()->get('uid');
         echo $uid.'<br/>';*/
         $openid_list = $this->wechat->app->user->list($nextOpenId = null);
